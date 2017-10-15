@@ -30,7 +30,7 @@ def send_semantic(path):
 
 @app.route("/cluster")
 def cluster():
-    return json.dumps(g.get_json(int(request.args.get("num"))))
+    return json.dumps(g.get_json(int(request.args.get("num"))), ensure_ascii=False)
 
 
 if __name__ == "__main__":

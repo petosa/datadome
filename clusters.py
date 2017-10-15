@@ -15,6 +15,7 @@ class Clusters:
         self.unsupervised = genfromtxt('unsupervised.csv', delimiter=',')
         self.supervised = genfromtxt('supervised.csv', delimiter=',')
         self.keys = genfromtxt('supervised.csv', delimiter=',', dtype="str")[1:,0]
+        self.info = genfromtxt('info.csv', delimiter='|~', dtype="str")
         # 86% accuracy
         # 32% true positive
         # 93% true negative

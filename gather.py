@@ -28,11 +28,18 @@ class Gather:
         count = 0
         for row in clustguess:
             ind = row[-1]
+            inforow = self.caller.info[count]
             if not ind in clustmap:
                 clustmap[ind] = []
+
             clustmap[ind].append({
                 "name": self.caller.keys[count],
                 "prediction": row[-2],
+                "busNm": inforow[0],
+                "city": inforow[2],
+                "state": inforow[3],
+                "SECNb": inforow[1],
+                "courtCases": inforow[4],
                 "size": 1
             })
             count += 1
