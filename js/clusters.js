@@ -55,14 +55,16 @@ function visualizeClusters(root, selected) {
                 for (x in d.children) {
                     selected.push(d.children[x]);
                 }
-                firmsUpdated();
                 clearHist();
                 visualizeHist(selected);
             });
     
-        /*var text = g.selectAll("text")
+        var text = g.selectAll("text")
             .data(nodes)
             .enter().append("text")
+            .filter(function(d){
+                return d.children != null;
+            })
             .attr("class", "label")
             .style("fill-opacity", function(d) {
                 return d.parent === root ? 1 : 0;
@@ -73,8 +75,8 @@ function visualizeClusters(root, selected) {
             .text(function(d) {
                 return d.data.name;
             });
-            */
-        var node = g.selectAll("circle");
+            
+        var node = g.selectAll("circle,text");
     
         svg
             .style("background", niceColor(2))

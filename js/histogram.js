@@ -1,10 +1,12 @@
 
 var init_height;
 var init_width;
+var init_selected;
 
 function clearHist() {
     $('#hist').empty();
     $('#hist').removeAttr("style");
+    init_selected = null;
 }
 
 function visualizeHist(data) {
@@ -104,6 +106,16 @@ function visualizeHist(data) {
             })
             .attr("height", function(d) {
                 return height - y(d.freq);
+            }).on("click", function(d) {
+                if(!init_selected) {
+                    init_selected = selected;
+                }
+                thresh = (parseInt(d.hole.replace("~","").replace("%","")))/100.0
+                function checkRange(d) {
+                    return d.data.prediction >= thresh && d.data.prediction < thresh + .1;
+                }
+                selected = init_selected.filter(checkRange);
+                firmsUpdated();
             });
 
     function type(d) {
