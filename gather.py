@@ -35,7 +35,7 @@ class Gather:
             clustmap[ind].append({
                 "name": self.caller.keys[count],
                 "prediction": row[-2],
-                "busNm": inforow[0],
+                "busNm": inforow[0].replace("\"","").replace("\t","").replace(":","").replace(";",""),
                 "city": inforow[2],
                 "state": inforow[3],
                 "SECNb": inforow[1],

@@ -10,12 +10,12 @@ keys = genfromtxt('supervised.csv', delimiter=',', dtype="str")[1:,0]
 def getVal(doc, family, key):
     try:
         if key == "@CourtCases":
-            build = []
+            build = ""
             for thing in doc["Firm"][family][key]:
-                build.append(str(thing))
-            print(str(build).replace("\'","\""))
-            return str(build).replace("\'","\"")
-        return (str(doc["Firm"][family][key]).strip())
+                build+=(str(thing)) + "!!!"
+            print(build)
+            return str(build)
+        return (str(doc["Firm"][family][key]).strip()).replace("\'","")
     except Exception as e:
         return str(None)
 
