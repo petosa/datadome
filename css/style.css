@@ -25,6 +25,11 @@
 }
 
 
+.bar {
+  cursor: pointer;
+
+}
+
 .bar:hover {
   opacity: 0.3;
   transition: opacity .6s;

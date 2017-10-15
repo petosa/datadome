@@ -1,5 +1,5 @@
 
-
+var previous = null;
 
 
 function clearClusters() {
@@ -51,12 +51,16 @@ function visualizeClusters(root, selected) {
                 return d == root ? 0 : 1;
             })
             .on("click", function(d) {
+                console.log(d)
                 selected.length = 0
                 for (x in d.children) {
                     selected.push(d.children[x]);
                 }
-                console.log("fill")
-                console.log(selected)
+                d3.select(this).style("fill", "green");
+                if(previous != null) {
+                    d3.select(previous).style("fill", redColor(1));
+                }
+                previous = this
                 clearHist();
                 visualizeHist(selected);
             });
