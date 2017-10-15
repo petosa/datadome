@@ -66,7 +66,7 @@
         list.id="actualList";
         list.style="height: 100%;overflow: scroll;padding: 10px;";
 
-        for(var i = 0; i < selected.length; i++) {
+        for(var i = 0; i < 20 && i < selected.length; i++) {
             // Create the list item:
             var item = document.createElement('div');
             item.className="ui card"
@@ -91,9 +91,7 @@
         // Finally, return the constructed list:
         $("#actualList").replaceWith(list);
       }
-
-      selected = [ ];
-
+      
       data = JSON.parse('{{ json | tojson | safe }}');
       visualizeClusters(data, selected);
       visualizeHist([]);

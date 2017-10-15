@@ -60,7 +60,7 @@ function visualizeClusters(root, selected) {
                 visualizeHist(selected);
             });
     
-        var text = g.selectAll("text")
+        /*var text = g.selectAll("text")
             .data(nodes)
             .enter().append("text")
             .attr("class", "label")
@@ -73,8 +73,8 @@ function visualizeClusters(root, selected) {
             .text(function(d) {
                 return d.data.name;
             });
-    
-        var node = g.selectAll("circle,text");
+            */
+        var node = g.selectAll("circle");
     
         svg
             .style("background", niceColor(2))
