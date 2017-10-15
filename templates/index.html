@@ -1,9 +1,9 @@
 <html>
   <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script src="js/clusters.js"></script>   
-  <script src="js/histogram.js"></script>   
+  <script src="js/clusters.js"></script>
+  <script src="js/histogram.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">  
+  <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
   <body>
     <div class="ui secondary pointing menu">
       <a class="active item">
@@ -22,18 +22,24 @@
       </div>
     </div>
     <div class="ui grid">
-      <div class="twelve wide column">
+      <div class="ten wide column">
           <svg id="clusters" width="50%" height="50%"></svg>
           <svg id="hist" width="50%" height="40%"></svg>
       </div>
-      <div class="four wide column">
-          <div class="ui input">
-              <input type="number" id="numClusters" placeholder="Clusters">
+      <div class="six wide column">
+        <div class="ui labeled input">
+          <div class="ui label"># Clusters:</div>
+            <input type="number" id="numClusters" placeholder="Clusters" value="8">
+        </div>
+        <button class="ui primary button" onclick="updateClusters1();">Update Clusters</button>
+        <div class="ui divider"></div>
+        <div id="cardList" style="height: 80%; overflow: hidden;">
+          <div class="ui list" id="actualList">
           </div>
-          <button class="ui button" onclick="updateClusters1();">Update Clusters</button>          
+        </div>
       </div>
     </div>
-    
+
 
 
     <script
@@ -53,7 +59,109 @@
           visualizeClusters(JSON.parse(data), selected)
         });
       }
-  
+      function firmsUpdated() {
+        var list = document.createElement('div');
+        list.className="ui list";
+        list.id="actualList";
+        list.style="height: 100%;overflow: scroll;padding: 10px;";
+
+        for(var i = 0; i < selected.length; i++) {
+            // Create the list item:
+            var item = document.createElement('div');
+            item.className="ui card"
+            var content = document.createElement('div');
+            content.className="content"
+            var header = document.createElement('div');
+            header.className="header"
+            header.appendChild(document.createTextNode(selected[i].name));
+            var desc = document.createElement('div');
+            desc.className="description";
+            desc.appendChild(document.createTextNode(selected[i].id + "\n" + selected[i].suspected + "\n" + selected[i].cases));
+
+
+            content.appendChild(header);
+            content.appendChild(desc);
+
+            item.appendChild(content);
+            // Add it to the list:
+            list.appendChild(item);
+        }
+
+        // Finally, return the constructed list:
+        $("#actualList").replaceWith(list);
+      }
+
+      selected = [
+        {
+          id: "123",
+          name: "asdf",
+          suspected: 1,
+          cases: ["asdf", "asdf"]
+        },
+        {
+          id: "123",
+          name: "asdf",
+          suspected: 1,
+          cases: ["asdf", "asdf"]
+        },
+        {
+          id: "123",
+          name: "asdf",
+          suspected: 1,
+          cases: ["asdf", "asdf"]
+        },
+        {
+          id: "123",
+          name: "asdf",
+          suspected: 1,
+          cases: ["asdf", "asdf"]
+        },
+        {
+          id: "123",
+          name: "asdf",
+          suspected: 1,
+          cases: ["asdf", "asdf"]
+        },
+        {
+          id: "123",
+          name: "asdf",
+          suspected: 1,
+          cases: ["asdf", "asdf"]
+        },
+        {
+          id: "123",
+          name: "asdf",
+          suspected: 1,
+          cases: ["asdf", "asdf"]
+        },
+        {
+          id: "123",
+          name: "asdf",
+          suspected: 1,
+          cases: ["asdf", "asdf"]
+        },
+        {
+          id: "123",
+          name: "asdf",
+          suspected: 1,
+          cases: ["asdf", "asdf"]
+        },
+        {
+          id: "123",
+          name: "asdf",
+          suspected: 1,
+          cases: ["asdf", "asdf"]
+        },
+        {
+          id: "123",
+          name: "asdf",
+          suspected: 1,
+          cases: ["asdf", "asdf"]
+        }
+      ];
+
+      firmsUpdated();
+
       data = JSON.parse('{{ json | tojson | safe }}');
       visualizeClusters(data, selected);
       visualizeHist([]);
