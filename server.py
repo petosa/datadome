@@ -14,7 +14,7 @@ CORS(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html", json=g.get_json(3,300), json2=g.get_json(2,10))
+    return render_template("index.html", json=g.get_json(8))
 
 @app.route("/js/<path:path>")
 def send_js(path):
@@ -30,7 +30,7 @@ def send_semantic(path):
 
 @app.route("/cluster")
 def cluster():
-    return json.dumps(g.get_json(int(request.args.get("num")), 10))
+    return json.dumps(g.get_json(int(request.args.get("num"))))
 
 
 if __name__ == "__main__":

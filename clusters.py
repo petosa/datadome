@@ -14,7 +14,7 @@ class Clusters:
     def ingest(self):
         self.unsupervised = genfromtxt('unsupervised.csv', delimiter=',')
         self.supervised = genfromtxt('supervised.csv', delimiter=',')
-
+        self.keys = genfromtxt('supervised.csv', delimiter=',', dtype="str")[1:,0]
         # 86% accuracy
         # 32% true positive
         # 93% true negative
@@ -27,7 +27,7 @@ class Clusters:
         test_y = all_y[10000:,:]
         clf = BaggingRegressor(n_estimators=100)
         clf = clf.fit(train_x, train_y)
-        self.guess = clf.predict(test_x)
+        self.guess = clf.predict(all_x)
 
     def cluster(self, k):
         clean = self.unsupervised[1:,1:]

@@ -55,7 +55,6 @@
       }
   
       data = JSON.parse('{{ json | tojson | safe }}');
-      data2 = JSON.parse('{{ json2 | tojson | safe }}');
       visualizeClusters(data, selected);
       visualizeHist([]);
       //visualizeHist(selected);
