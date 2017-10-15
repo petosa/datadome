@@ -6,11 +6,11 @@ var init_selected;
 function clearHist() {
     $('#hist').empty();
     $('#hist').removeAttr("style");
-    init_selected = null;
+    
 }
 
 function visualizeHist(data) {
-
+    init_selected = data;
     if (!init_height) {
         init_height = $("#hist").height()
         init_width = $("#hist").width()
@@ -107,9 +107,6 @@ function visualizeHist(data) {
             .attr("height", function(d) {
                 return height - y(d.freq);
             }).on("click", function(d) {
-                if(!init_selected) {
-                    init_selected = selected;
-                }
                 thresh = (parseInt(d.hole.replace("~","").replace("%","")))/100.0
                 function checkRange(d) {
                     return d.data.prediction >= thresh && d.data.prediction < thresh + .1;

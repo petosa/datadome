@@ -55,6 +55,8 @@ function visualizeClusters(root, selected) {
                 for (x in d.children) {
                     selected.push(d.children[x]);
                 }
+                console.log("fill")
+                console.log(selected)
                 clearHist();
                 visualizeHist(selected);
             });
