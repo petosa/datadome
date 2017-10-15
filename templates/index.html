@@ -92,76 +92,7 @@
         $("#actualList").replaceWith(list);
       }
 
-      selected = [
-        {
-          id: "123",
-          name: "asdf",
-          suspected: 1,
-          cases: ["asdf", "asdf"]
-        },
-        {
-          id: "123",
-          name: "asdf",
-          suspected: 1,
-          cases: ["asdf", "asdf"]
-        },
-        {
-          id: "123",
-          name: "asdf",
-          suspected: 1,
-          cases: ["asdf", "asdf"]
-        },
-        {
-          id: "123",
-          name: "asdf",
-          suspected: 1,
-          cases: ["asdf", "asdf"]
-        },
-        {
-          id: "123",
-          name: "asdf",
-          suspected: 1,
-          cases: ["asdf", "asdf"]
-        },
-        {
-          id: "123",
-          name: "asdf",
-          suspected: 1,
-          cases: ["asdf", "asdf"]
-        },
-        {
-          id: "123",
-          name: "asdf",
-          suspected: 1,
-          cases: ["asdf", "asdf"]
-        },
-        {
-          id: "123",
-          name: "asdf",
-          suspected: 1,
-          cases: ["asdf", "asdf"]
-        },
-        {
-          id: "123",
-          name: "asdf",
-          suspected: 1,
-          cases: ["asdf", "asdf"]
-        },
-        {
-          id: "123",
-          name: "asdf",
-          suspected: 1,
-          cases: ["asdf", "asdf"]
-        },
-        {
-          id: "123",
-          name: "asdf",
-          suspected: 1,
-          cases: ["asdf", "asdf"]
-        }
-      ];
-
-      //firmsUpdated();
+      selected = [ ];
 
       data = JSON.parse('{{ json | tojson | safe }}');
       visualizeClusters(data, selected);

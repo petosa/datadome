@@ -46,7 +46,7 @@ class Gather:
 
         for clusternum in clustmap:
             cluster = {
-                "name": "Cluster " + str(clusternum),
+                "name": "Cluster " + str(int(clusternum)),
                 "children": clustmap[clusternum],
                 "size": len(clustmap[clusternum])
             }
