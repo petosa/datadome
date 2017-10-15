@@ -7,26 +7,15 @@
   <body>
     <div class="ui secondary pointing menu">
       <a class="active item">
-        Home
+        DataDome
       </a>
-      <a class="item">
-        Messages
-      </a>
-      <a class="item">
-        Friends
-      </a>
-      <div class="right menu">
-        <a class="ui item">
-          Logout
-        </a>
-      </div>
     </div>
     <div class="ui grid">
       <div class="ten wide column">
-          <svg id="clusters" width="50%" height="50%"></svg>
-          <svg id="hist" width="50%" height="40%"></svg>
+          <svg id="clusters" width="100%" height="50%"></svg>
+          <svg id="hist" width="100%" height="40%"></svg>
       </div>
-      <div class="six wide column">
+      <div class="six wide column centered">
         <div class="ui labeled input">
           <div class="ui label"># Clusters:</div>
             <input type="number" id="numClusters" placeholder="Clusters" value="8">
@@ -66,7 +55,26 @@
         list.id="actualList";
         list.style="height: 100%;overflow: scroll;padding: 10px;";
 
-        for(var i = 0; i < 20 && i < selected.length; i++) {
+        courtsList = []
+        for(var i = 0; i < selected.length; i++) {
+          if (selected[i].data.courtCases != "None") {
+            courtsList.push(selected[i]);
+          }
+        }
+
+        var len = selected.length;
+        if (selected.length > 15) {
+          len = 15;
+        }
+        var count = courtsList.length
+        while (count < 15 && count < selected.length) {
+          if (selected[count].data.courtCases === "None") {
+            courtsList.push(selected[count]);
+          }
+          count++;
+        }
+
+        for(var i = 0; i < courtsList.length; i++) {
             // Create the list item:
             var item = document.createElement('div');
             item.className="ui card"
@@ -74,15 +82,27 @@
             content.className="content"
             var header = document.createElement('div');
             header.className="header"
-            header.appendChild(document.createTextNode(selected[i].name));
+            header.appendChild(document.createTextNode(courtsList[i].data.busNm));
             var desc = document.createElement('div');
             desc.className="description";
-            desc.appendChild(document.createTextNode(selected[i].id + "\n" + selected[i].suspected + "\n" + selected[i].cases));
+            var descrip = "SEC Number:"+ courtsList[i].data.SECNb + "\nPrediction:" + courtsList[i].data.prediction
+            desc.style="word-wrap: break-word;";
 
 
             content.appendChild(header);
             content.appendChild(desc);
 
+            if (courtsList[i].data.courtCases !== "None") {
+              cases = courtsList[i].data.courtCases.split("!!!")
+              descrip += "\nCases:"
+              for (var j = 0; j < cases.length; j++) {
+                if (cases[j] !== "") {
+                  descrip +="\n" +cases[j];
+                }
+              }
+            }
+            desc.appendChild(document.createTextNode(descrip));
+            content.appendChild(desc);
             item.appendChild(content);
             // Add it to the list:
             list.appendChild(item);
@@ -91,7 +111,7 @@
         // Finally, return the constructed list:
         $("#actualList").replaceWith(list);
       }
-      
+
       data = JSON.parse('{{ json | tojson | safe }}');
       visualizeClusters(data, selected);
       visualizeHist([]);
