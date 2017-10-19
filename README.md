@@ -5,3 +5,4 @@ FINRA Data Challenge
 Winner of the FINRA prize at HackGT 2017.
 Data Visualization platform for investigators and engineers.
 Visualizes IACB data using circle packing and histogram.
+Backed by unsupervised clustering and supervised threat distribution prediction.
